@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private View btnGuess;
     private EditText editInput;
     private TextView textInfo;
+    private String strAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +29,16 @@ public class MainActivity extends AppCompatActivity {
                 doGuess();
             }
         });
+
+        strAnswer = createAnswer(3);
     }
 
     private void doGuess(){
         // TODO 進行猜數字的程序
+        String strGuess = editInput.getText().toString();
+        String result = checkAB(strAnswer, strGuess);
+        textInfo.append(strGuess + " => " + result + "\n");
+        editInput.setText("");
     }
 
     /**
@@ -48,9 +55,21 @@ public class MainActivity extends AppCompatActivity {
         return sb.toString();
     }
 
-    private String checkAB(){
-        // TODO 以謎底字串及editInput的字串比對, 回傳 ?A?B
-        return "";
+    /**
+     * @param a 謎底字串
+     * @param g 比對字串
+     * @return 比對結果字串
+     */
+    private String checkAB(String a, String g){
+        int A, B; A = B = 0;
+        for (int i=0; i<g.length(); i++){
+            if (g.charAt(i) == a.charAt(i)){
+                A++;
+            }else if (a.indexOf(g.charAt(i)) != -1){
+                B++;
+            }
+        }
+        return A + "A" + B + "B";
     }
 
 }
