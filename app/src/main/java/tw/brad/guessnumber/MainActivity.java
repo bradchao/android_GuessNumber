@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doGuess(){
-        // TODO 進行猜數字的程序
         String strGuess = editInput.getText().toString();
         String result = checkAB(strAnswer, strGuess);
         textInfo.append(strGuess + " => " + result + "\n");
